@@ -1,4 +1,5 @@
 using CurrencyNumberConverter.Currency;
+using CurrencyNumberConverterServer;
 using CurrencyNumberConverterServer.Currency;
 using Newtonsoft.Json;
 
@@ -19,28 +20,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapFallback(() => Results.Redirect("/swagger"));
+
 app.UseHttpsRedirection();
 
-app.MapGet("/api/numberconverter/",IResult (string value, string currency) =>
-    {
-        ICurrency moneyCurrency = Currency.Validate(currency);
-
-        try
-        {
-            CurrencyNumberConverter.CurrencyNumberConverter moneyLiteralConverter = new(moneyCurrency);
-            string result = moneyLiteralConverter.Convert(value);
-            string resultSerialized = JsonConvert.SerializeObject(new { Message = result});
-            
-            return TypedResults.Ok(resultSerialized);
-        }
-        catch (Exception e)
-        {
-            return TypedResults.UnprocessableEntity(e.Message);
-        }
-
-    })
-    .WithName("GetNumberConverter")
-    .Produces(StatusCodes.Status200OK)
-    .Produces(StatusCodes.Status422UnprocessableEntity);
+app.NumberConverterRoute();
 
 app.Run();
+
+// This is needed to access Program in Server.Tests
+public partial class Program { }
+

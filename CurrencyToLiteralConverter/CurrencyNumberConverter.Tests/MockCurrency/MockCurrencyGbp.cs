@@ -1,6 +1,6 @@
 ﻿using CurrencyNumberConverter.Currency;
 
-namespace CurrencyNumberConverter.Tests;
+namespace CurrencyNumberConverter.Tests.MockCurrency;
 
 public class MockCurrencyGbp : ICurrency
 {
