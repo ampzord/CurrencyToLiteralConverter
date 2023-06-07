@@ -14,7 +14,7 @@ public class NumberConvertedTests : IClassFixture<WebApplicationFactory<Program>
     }
     
     /// <summary>
-    /// Integration testing API for correct result if given a valid input by the user
+    /// Testing for correct result if given a valid input by the user
     /// </summary>
     /// <param name="url"></param>
     [Theory]
@@ -32,7 +32,7 @@ public class NumberConvertedTests : IClassFixture<WebApplicationFactory<Program>
     }
     
     /// <summary>
-    /// Integration testing API for client error if given a invalid input by the user
+    /// Testing for client error if given a invalid input by the user
     /// </summary>
     /// <param name="url"></param>
     [Theory]

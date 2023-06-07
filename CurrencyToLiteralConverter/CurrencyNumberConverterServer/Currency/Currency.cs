@@ -8,7 +8,6 @@ public static class Currency
 {
     public static ICurrency? Validate(string currency)
     {
-        
         try
         {
             ICurrency moneyCurrency;
@@ -25,8 +24,8 @@ public static class Currency
                     message.Content = new StringContent($"The currency does not exist: {currency}.");
                     throw new HttpResponseException(message);
             }
+            
             return moneyCurrency;
-
         }
         catch (Exception e)
         {

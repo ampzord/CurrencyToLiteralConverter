@@ -1,7 +1,4 @@
-using CurrencyNumberConverter.Currency;
 using CurrencyNumberConverterServer;
-using CurrencyNumberConverterServer.Currency;
-using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
