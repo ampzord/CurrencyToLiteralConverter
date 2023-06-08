@@ -4,15 +4,20 @@
 
 - Algorithm - CurrencyNumberConverter
 
-- Unit tests - CurrencyNumberConverter.Tests
+- Unit tests - CurrencyNumberConverter.Tests (xUnit + FluentValidation)
 
-- Server - CurrencyNumberConverterServer
+- Server - CurrencyNumberConverterServer (Minimal API + Swagger)
 
-- Integration Tests - CurrencyNumberConverterServer.Tests
+- Integration Tests - CurrencyNumberConverterServer.Tests (xUnit + FluentValidation)
 
-- Client - CurrencyNumberConverterClient
+- Client - CurrencyNumberConverterClient (WPF)
 
 Made with **.NET 7**
+
+## How to run
+
+1. Run CurrencyNumberConverterServer Project
+2. Run CurrencyNumberConverterClient Project
 
 ## How to use
 
