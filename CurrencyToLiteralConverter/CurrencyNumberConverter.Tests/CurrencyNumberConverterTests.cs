@@ -15,6 +15,7 @@ public class CurrencyNumberConverterTests
     [InlineData("1", "one dollar")]
     [InlineData("25,1", "twenty-five dollars and ten cents")]
     [InlineData("45 100", "forty-five thousand one hundred dollars")]
+    [InlineData("4 841 100,78", "four million eight hundred forty-one thousand one hundred dollars and seventy-eight cents")]
     [InlineData("999 999 999,99", "nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars and ninety-nine cents")]
     public void CurrencyNumberConverter_Convert_ReturnsNumberInLiteralDollars(string number, string expected)
     {

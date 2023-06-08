@@ -7,10 +7,10 @@ namespace CurrencyNumberConverter;
 public class CurrencyNumberConverter
 {
     private readonly Dictionary<int, string> _moneyConverterLiteral;
-    private readonly ICurrency _currency;
+    private readonly ICurrency? _currency;
     private readonly string[] _integerCurrencyLevels;
 
-    public CurrencyNumberConverter(ICurrency currency)
+    public CurrencyNumberConverter(ICurrency? currency)
     {
         _currency = currency;
         _moneyConverterLiteral = new Dictionary<int, string>();
