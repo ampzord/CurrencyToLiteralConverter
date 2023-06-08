@@ -18,3 +18,4 @@ Made with **.NET 7**
 
 ## How to use
 
+![Happy_Path](https://i.imgur.com/SfmcTNs.gif)
