@@ -1,7 +1,5 @@
 # Money Currency To Literal Converter
 
-Repository to hold Currency Money to Literal Converter Project
-
 ## Project division
 
 - Algorithm - CurrencyNumberConverter
