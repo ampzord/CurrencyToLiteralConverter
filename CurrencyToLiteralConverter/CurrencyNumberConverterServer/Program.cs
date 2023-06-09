@@ -1,6 +1,13 @@
 using CurrencyNumberConverterServer;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+builder.Logging.AddSerilog(logger);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -21,7 +28,9 @@ app.MapFallback(() => Results.Redirect("/swagger"));
 
 app.UseHttpsRedirection();
 
-app.NumberConverterRoute();
+app.NumberConverterRoute(logger);
+
+logger.Information("Started Number Currency Converter Server...");
 
 app.Run();
 

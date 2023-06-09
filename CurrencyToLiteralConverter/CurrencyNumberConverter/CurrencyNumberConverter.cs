@@ -249,9 +249,9 @@ public class CurrencyNumberConverter
     private string AddCentsAmountLiteral(int number)
     {
         if (number == 1)
-            return $"{_currency.Cent}";
+            return $"{_currency?.Cent}";
         
-        return $"{_currency.Cents}";
+        return $"{_currency?.Cents}";
     }
 
     /// <summary>
@@ -268,7 +268,7 @@ public class CurrencyNumberConverter
         if (indexLevel != 0)
             return _integerCurrencyLevels[indexLevel] + " ";
         
-        return number == 1 ? $"{_currency.MoneySingular}" : $"{_currency.MoneyPlural}";
+        return number == 1 ? $"{_currency?.MoneySingular}" : $"{_currency?.MoneyPlural}";
     }
     
     /// <summary>

@@ -37,26 +37,33 @@ namespace CurrencyNumberConverterClient
             var client = CreateHttpClient();
 
             string inputCurrency = ((ComboBoxItem)InputCurrencyValue.SelectedItem).Name;
+            string inputValue = InputNumberValue.Text;
 
-            HttpResponseMessage response = await client.GetAsync($"api/numberconverter?value={InputNumberValue.Text}&currency={inputCurrency}");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = await client.GetAsync(
+                        $"api/numberconverter?value={inputValue}&currency={inputCurrency}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
 
-                JToken jt = JToken.Parse(responseResult);
-                var deserializeResponse = JsonConvert.DeserializeObject<ConvertNumberResponse>(jt.ToString());
-                ResultOutput.Text = deserializeResponse.result;
-            } else {
-                ResultOutput.Text = string.Empty;
-                var responseResult = await response.Content.ReadAsStringAsync();
-                MessageBox.Show("Request Error - " + response.ReasonPhrase + "\n" + responseResult );
+                    JToken jt = JToken.Parse(responseResult);
+                    var deserializeResponse = JsonConvert.DeserializeObject<ConvertNumberResponse>(jt.ToString());
+                    ResultOutput.Text = deserializeResponse.result;
+                }
+                else
+                {
+                    ResultOutput.Text = string.Empty;
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Request Error - " + response.ReasonPhrase + "\n" + responseResult);
+                }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Something went wrong!");
+            }
+            
         }
-
-        // public class ConvertNumberResponse
-        // {
-        //     public string result { get; set; }
-        // }
 
         record ConvertNumberResponse(string result);
 
