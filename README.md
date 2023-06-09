@@ -6,7 +6,7 @@
 
 - Unit tests - CurrencyNumberConverter.Tests (xUnit + FluentValidation)
 
-- Server - CurrencyNumberConverterServer (Minimal API + Swagger)
+- Server - CurrencyNumberConverterServer (Minimal API + Swagger + Serilog)
 
 - Integration Tests - CurrencyNumberConverterServer.Tests (xUnit + FluentValidation)
 
