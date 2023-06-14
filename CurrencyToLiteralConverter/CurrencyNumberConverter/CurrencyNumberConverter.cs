@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using CurrencyNumberConverter.Currency;
+using CurrencyNumberConverter.Exceptions;
 
 namespace CurrencyNumberConverter;
 
@@ -59,24 +60,47 @@ public class CurrencyNumberConverter
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     private void ValidateNumber(string integerPart, string decimalPart)
     {
-        if (!int.TryParse(integerPart, out var integerNumber))
-            throw new ValidationException("Integer part of the number is not a valid int.");
-
-        if (integerNumber is < 0 or > 999_999_999)
-            throw new ArgumentOutOfRangeException(integerPart + "," + decimalPart,"Number must be between 0 and 999 999 999.");
-
+        ValidateIntegerPart(integerPart);
+        
         if (string.IsNullOrEmpty(decimalPart))
             return;
         
+        ValidateDecimalPart(decimalPart);
+    }
+
+    /// <summary>
+    /// Validates the integer part of the number
+    /// </summary>
+    /// <param name="integerPart"></param>
+    /// <exception cref="IntegerPartNotAnIntException"></exception>
+    /// <exception cref="InvalidNumberRangeException"></exception>
+    private void ValidateIntegerPart(string integerPart)
+    {
+        if (!int.TryParse(integerPart, out var integerNumber))
+            throw new IntegerPartNotAnIntException();
+
+
+        if (integerNumber is < 0 or > 999_999_999)
+            throw new InvalidNumberRangeException(integerPart);
+    }
+
+    /// <summary>
+    /// Validates the decimal part of the number
+    /// </summary>
+    /// <param name="decimalPart"></param>
+    /// <exception cref="InvalidDecimalPartLengthException"></exception>
+    /// <exception cref="DecimalPartNotAnIntException"></exception>
+    /// <exception cref="InvalidDecimalPartNumberRange"></exception>
+    private void ValidateDecimalPart(string decimalPart)
+    {
         if (decimalPart.Length > 2)
-            throw new ArgumentOutOfRangeException(decimalPart,"Decimal part must be between 0 and 99.");
+            throw new InvalidDecimalPartLengthException(decimalPart);
         
         if (!int.TryParse(decimalPart, out var decimalNumber))
-            throw new ValidationException("Decimal part of the number is not a valid int.");
-        
-        if (decimalNumber is < 0 or > 99)
-            throw new ArgumentOutOfRangeException(decimalPart,"Decimal part must be between 0 and 99.");
+            throw new DecimalPartNotAnIntException();
 
+        if (decimalNumber is < 0 or > 99)
+            throw new InvalidDecimalPartNumberRange(decimalPart);
     }
     
     /// <summary>

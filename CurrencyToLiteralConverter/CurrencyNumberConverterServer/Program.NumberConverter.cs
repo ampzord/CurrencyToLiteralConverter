@@ -1,5 +1,4 @@
-﻿using System.Web.Http.Results;
-using CurrencyNumberConverter.Currency;
+﻿using CurrencyNumberConverter.Currency;
 using Newtonsoft.Json;
 using Serilog.Core;
 
